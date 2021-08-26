@@ -2,8 +2,8 @@
 const Discord = require("discord.js");
 
 //Require Moment.js
-//var moment = require('moment'); 
-//moment().format(); 
+var moment = require('moment'); 
+moment().format(); 
 
 // Reminder Module
 module.exports = {
@@ -12,38 +12,47 @@ module.exports = {
     // Description of Command
     description: 'Get reminded for an event',
     // Usage Instructions
-    usage: '!remind [year/month/date] [xx:xx:xx] [minsbefore] [eventname]',
+    usage: '[year-month-date] [xx:xx:xx] [minsbefore] [eventname]',
     // Guild - TRUE
     guildOnly: true,
     // Arguments TRUE
     args: true,
     // Execute Command - Parameters: message
     execute(message, args) {
-        let eventYDT = arg[0];
-        let eventTime = arg[1];
-        let minsBefore = arg[2];
-        let eventName = arg[3];
+        let eventDMY = args[0];
+        let eventTime = args[1];
+        let minsBefore = args[2];
+        let eventName = args[3];
         
         //  format so that the Date constructor can recognize the inputs
-        let newTime = eventYDT + " " + eventTime;
+        let newTime = eventDMY + "T" + eventTime;
+        message.channel.send(newTime);
         let remindDate = new Date(newTime);
         
         // Get current date and time
-        let currentDate = new Date(); 
-        let cdSpecific = currentDate.getFullYear() + "/" 
-        + (currentDate.getDate()+1)+ "/" 
-        + currentDate.getDay() + " " 
-        + currentdate.getHours() + ":"  
-        + currentdate.getMinutes() + ":" 
-        + currentdate.getSeconds();
+        // For todays date;
+            Date.prototype.today = function () { 
+                //return (this.getFullYear() +"-" + (((this.getMonth()+1) < 10)?"0":"") +  (this.getMonth()+1) + "-" + (this.getDate() < 10)?"0":"") + this.getDate();
+                
+                return this.getFullYear() + "-0" + (this.getMonth()+1) + "-" + this.getDate();
+            }
+        // 2021-08-26T12:00:00
+        // For the time now
+            Date.prototype.timeNow = function () {
+                return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() +":"+ ((this.getSeconds() < 10)?"0":"") + this.getSeconds();
+            }
+        let cdSpecific = new Date().today() + "T" + new Date().timeNow();
+        message.channel.send(cdSpecific);
+        let cdNew = new Date(cdSpecific);
         // Get difference in milliseconds
-        let diff = Math.abs(remindDate - cdSpecific);
+        let diff = Math.abs(remindDate - cdNew);
+        message.channel.send(diff);
         // Subtract the requested minutes before
         let finalTime = diff - (minsBefore * 60000);
         message.channel.send('Reminder created!');
         // Add it to the list
         var eventsList = [];
-        let tempData = eventName + " at " + eventTime + " on " + eventYDT;
+        let tempData = eventName + " at " + eventTime + " on " + eventDMY;
         eventsList.push(tempData);
         // Create the reminder
         setTimeout(function(){
@@ -53,12 +62,12 @@ module.exports = {
             .setDescription(`${message.author}, this is a reminder to attend ` + eventName + " in " + minsBefore + "  minutes")
             .setTimestamp()
             .setFooter('Powered by amongus sussy baka');
-
+            message.channel.send(embed);
         }, finalTime)
         //removes the reminder from the list after message
         for(let i = 0; i < eventsList.length; i++){
             if(eventsList[i] === tempData){
-                array.splice(index, i);
+                Array.prototype.splice(i, 1);
             }
         }
     },

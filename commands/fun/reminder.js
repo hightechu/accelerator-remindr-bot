@@ -6,7 +6,7 @@ module.exports = {
     // Name of Command
     name: 'reminder',
     // Description of Command
-    description: 'A reminder that runs evey X minutes.',
+    description: 'A reminder that runs every X minutes.',
     // Usage Instructions
     usage: '[number] or [stop ID]',
     // Guild - TRUE
