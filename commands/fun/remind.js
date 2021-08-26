@@ -18,6 +18,7 @@ module.exports = {
     // Arguments TRUE
     args: true,
     // Execute Command - Parameters: message
+    eventsList : [],
     execute(message, args) {
         let eventDMY = args[0];
         let eventTime = args[1];
@@ -51,7 +52,7 @@ module.exports = {
         let finalTime = diff - (minsBefore * 60000);
         message.channel.send('Reminder created!');
         // Add it to the list
-        var eventsList = [];
+        eventsList = [];
         let tempData = eventName + " at " + eventTime + " on " + eventDMY;
         eventsList.push(tempData);
         // Create the reminder

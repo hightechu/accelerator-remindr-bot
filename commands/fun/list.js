@@ -5,6 +5,7 @@ const Discord = require("discord.js");
 //var moment = require('moment'); 
 //moment().format(); 
 
+const eventsList = require("./remind");
 // Reminder Module
 module.exports = {
     // Name of Command
@@ -12,13 +13,12 @@ module.exports = {
     // Description of Command
     description: 'See a list of upcoming events',
     // Usage Instructions
-    usage: '!list',
+    usage: '',
     // Guild - TRUE
     guildOnly: true,
     // Arguments TRUE
-    args: true,
     // Execute Command - Parameters: message
-    execute(message, args) {
+    execute(message) {
         var newList = eventsList;
         for(let i = 0; i < newList.length; i++){
             if(i === 0){
