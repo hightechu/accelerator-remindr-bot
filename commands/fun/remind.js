@@ -51,6 +51,5 @@ module.exports = {
             .setFooter('Powered by amongus sussy baka');
 
         }, finalTime)
-        
     },
 };
