@@ -27,7 +27,7 @@ module.exports = {
         //  format so that the Date constructor can recognize the inputs
         let newTime = eventYDT + " " + eventTime;
         let remindDate = new Date(newTime);
-
+        
         // Get current date and time
         let currentDate = new Date(); 
         let cdSpecific = currentDate.getFullYear() + "/" 
@@ -51,5 +51,9 @@ module.exports = {
             .setFooter('Powered by amongus sussy baka');
 
         }, finalTime)
+        var eventsList = [];
+        let tempData = eventName + " at " + eventTime + " on " + eventYDT;
+        eventsList.push(tempData);
+
     },
 };
