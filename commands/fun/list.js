@@ -21,10 +21,10 @@ module.exports = {
     execute(message, args) {
         for(let i = 0; i < tempData.length; i++){
             if(i === 0){
-                message.channel.send("\n" + tempData[i]);
+                message.channel.send(tempData[i]);
             }
             else{
-                message.channel.send(tempData[i]);
+                message.channel.send("\n" + tempData[i]);
             }
         }
 

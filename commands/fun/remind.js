@@ -41,6 +41,10 @@ module.exports = {
         // Subtract the requested minutes before
         let finalTime = diff - (minsBefore * 60000);
         message.channel.send('Reminder created!');
+        // Add it to the list
+        var eventsList = [];
+        let tempData = eventName + " at " + eventTime + " on " + eventYDT;
+        eventsList.push(tempData);
         // Create the reminder
         setTimeout(function(){
             const embed = new Discord.MessageEmbed()
@@ -51,9 +55,11 @@ module.exports = {
             .setFooter('Powered by amongus sussy baka');
 
         }, finalTime)
-        var eventsList = [];
-        let tempData = eventName + " at " + eventTime + " on " + eventYDT;
-        eventsList.push(tempData);
-
+        //removes the reminder from the list after message
+        for(let i = 0; i < eventsList.length; i++){
+            if(eventsList[i] === tempData){
+                array.splice(index, i);
+            }
+        }
     },
 };
