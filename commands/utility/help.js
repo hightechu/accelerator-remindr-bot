@@ -18,8 +18,14 @@ module.exports = {
         desc += "E.g. `!timer touchGrass 10`\n\n";
 
         desc += "**!remind [date] [time] [mins before] [reminderName]**\n";
-        desc += "Add a reminder to the calendar\n";
+        desc += "Add a reminder\n";
         desc += "E.g. `!remind 2021-08-25 8:36:00 10 event`\n\n";
+
+        desc += "**!calendar [link]**\n";
+        desc += "Add your Google Calendar events as reminders \n\n";
+
+        desc += "**!add [name] [start] [end] [date]";
+        desc += "Add your events to Google Calendar straight from Discord \n\n";
 
         desc += "**!quote**\n";
         desc += "Send a random inspirational quote";
