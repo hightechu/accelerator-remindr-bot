@@ -24,8 +24,9 @@ module.exports = {
         desc += "**!calendar [link]**\n";
         desc += "Add your Google Calendar events as reminders \n\n";
 
-        desc += "**!add [name] [start] [end] [date]";
-        desc += "Add your events to Google Calendar straight from Discord \n\n";
+        desc += "**!add [link] [name] [start] [end] [date]**\n";
+        desc += "Add your events to Google Calendar straight from Discord\n";
+        desc += "E.g. `!add [link] running 8:15 10:15 2021-08-31`\n\n";
 
         desc += "**!quote**\n";
         desc += "Send a random inspirational quote";
