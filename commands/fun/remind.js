@@ -33,7 +33,7 @@ module.exports = {
         // Get current date and time
         // For todays date;
             Date.prototype.today = function () { 
-                //return (this.getFullYear() +"-" + (((this.getMonth()+1) < 10)?"0":"") +  (this.getMonth()+1) + "-" + (this.getDate() < 10)?"0":"") + this.getDate();
+                // return (this.getFullYear() +"-" + (((this.getMonth()+1) < 10)?"0":"") +  (this.getMonth()+1) + "-" + (this.getDate() < 10)?"0":"") + this.getDate();
                 
                 return this.getFullYear() + "-0" + (this.getMonth()+1) + "-" + this.getDate();
             }
@@ -50,19 +50,21 @@ module.exports = {
         message.channel.send(diff);
         // Subtract the requested minutes before
         let finalTime = diff - (minsBefore * 60000);
+        message.channel.send(finalTime);
         message.channel.send('Reminder created!');
         // Add it to the list
         eventsList = [];
         let tempData = eventName + " at " + eventTime + " on " + eventDMY;
         eventsList.push(tempData);
         // Create the reminder
-        setTimeout(function(){
+        setTimeout(
+            function(){
             const embed = new Discord.MessageEmbed()
             .setColor('#20C19E')
             .setTitle('Reminder!')
             .setDescription(`${message.author}, this is a reminder to attend ` + eventName + " in " + minsBefore + "  minutes")
             .setTimestamp()
-            .setFooter('Powered by amongus sussy baka');
+            .setFooter('Powered by Remindr');
             message.channel.send(embed);
         }, finalTime)
         //removes the reminder from the list after message
