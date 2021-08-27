@@ -5,6 +5,7 @@ const Discord = require("discord.js");
 var moment = require('moment'); 
 moment().format(); 
 
+global.eventsList = [];
 // Reminder Module
 module.exports = {
     // Name of Command
@@ -18,7 +19,7 @@ module.exports = {
     // Arguments TRUE
     args: true,
     // Execute Command - Parameters: message
-    eventsList : [],
+    // eventsList : [],
     execute(message, args) {
         let eventDMY = args[0];
         let eventTime = args[1];
@@ -56,6 +57,7 @@ module.exports = {
         eventsList = [];
         let tempData = eventName + " at " + eventTime + " on " + eventDMY;
         eventsList.push(tempData);
+        console.log("hi", eventsList);
         // Create the reminder
         setTimeout(
             function(){

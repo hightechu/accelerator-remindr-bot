@@ -5,7 +5,7 @@ const Discord = require("discord.js");
 //var moment = require('moment'); 
 //moment().format(); 
 
-const {eventsList} = require("./remind.js");
+//const {eventsList} = require("./remind.js");
 // Reminder Module
 module.exports = {
     // Name of Command
@@ -17,14 +17,21 @@ module.exports = {
     // Execute Command - Parameters: message
     execute(message) {
         var newList = eventsList;
+        console.log("hi ", eventsList);
+        let description = "";
         for(let i = 0; i < newList.length; i++){
-            if(i === 0){
-                message.channel.send(newList[i]);
-            }
-            else{
-                message.channel.send("\n" + newList[i]);
-            }
+
+                description += newList[i] + "\n";
         }
+
+        const embed = new Discord.MessageEmbed()
+            .setColor('#20C19E')
+            .setTitle('List')
+            .setDescription(description)
+            .setTimestamp()
+            .setFooter('Powered by Remindr');
+    
+        message.channel.send(embed)
 
     }
     
